@@ -13,7 +13,7 @@ parseInstructions text = map parseInstruction matches
     -- Parse each match into an instruction or a pair
     parseInstruction :: [String] -> (String, Maybe (Int, Int))
     parseInstruction match
-      | head match == "do()" = ("do", Nothing)
+      | head match == "do()"= ("do", Nothing)
       | head match == "don't()" = ("don't", Nothing)
       | otherwise = case tail match of
           (x : y : _) -> ("mul", Just (read x, read y))
@@ -27,8 +27,8 @@ processInstructions = go True 0
     go _ acc [] = acc
     go enabled acc ((instr, Nothing) : rest)
       | instr == "do" = go True acc rest
-      | instr == "don't" = go False acc rest
-      | otherwise = go enabled acc rest
+      | instr == "don't" = go False acc rest 
+      | otherwise = go enabled acc rest 
     go enabled acc ((_, Just (x, y)) : rest)
       | enabled = go enabled (acc + (x * y)) rest
       | otherwise = go enabled acc rest

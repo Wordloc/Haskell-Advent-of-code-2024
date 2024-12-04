@@ -3,7 +3,7 @@ import Text.Regex.TDFA ((=~))
 import Data.Maybe (mapMaybe)
 
 -- Parse the input text and find all substrings matching the pattern mul(X,Y)
-parseMultiples :: String -> [(Int, Int)]
+parseMultiples :: String -> [(String, Maybe (Int, Int))]
 parseMultiples text = mapMaybe extractNumbers matches
   where
     -- Regex to match mul(X,Y) where X and Y are 1-3 digit numbers
@@ -26,4 +26,3 @@ main = do
     let pairs = parseMultiples content
         total = sumOfMultiples pairs
     print total -- Print the total sum of all valid multiples
-
